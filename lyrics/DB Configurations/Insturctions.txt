@@ -1,0 +1,1 @@
+You'd need to import this into your database first before the web app can work. Please name the database name as "hcc" and let the import function finish the rest.
