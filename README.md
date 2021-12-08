@@ -12,7 +12,7 @@ If this project has helped you in anyway, please feel free to donate if you are 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/jubilianho)
 
 ## License and Copyright Information
-Copyright (c) 2021 Jubilian Ho Hong Yi
+Copyright © 2021 Jubilian Ho Hong Yi
 
 Repository content shall be released under the MIT License.
 
