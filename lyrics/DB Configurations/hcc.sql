@@ -39,7 +39,7 @@ CREATE TABLE `information` (
 --
 
 INSERT INTO `information` (`id`, `version`, `dbupdated`, `totalsongs`) VALUES
-(1, '4.0.1 Beta', '2021-12-08 23:37:13', 3);
+(1, '3.0.0', '2021-12-08 23:37:13', 3);
 
 -- --------------------------------------------------------
 
