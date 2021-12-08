@@ -1,5 +1,5 @@
 # Lyrics
-Personal Project For Songs Identification
+Personal project for songs identification using text files exported by ProPresenter 7.
 
 ## Usage
 XAMPP was used in the development of this project. To run this project, you may choose to use XAMPP or any other suitable applications or environment that supports HTML, CSS, JS and PHP.
