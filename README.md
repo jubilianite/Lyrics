@@ -4,7 +4,7 @@ Personal project for songs identification using text files exported by ProPresen
 ## Usage
 A sample ProPresenter Export file has been provided for preliminary testing and usage.
 
-XAMPP was used in the development of this project. To run this project, you may choose to use XAMPP or any other suitable applications or environment that supports HTML, CSS, JS, PHP together with a database.
+XAMPP was used in the development of this project. To run this project, you may choose to use XAMPP or any other suitable applications or environment that supports HTML, CSS, JS and PHP together with a database.
 
 To download XAMPP, please visit http://www.apachefriends.org/en/xampp.html and select a suitable version for your Operating System.
 
