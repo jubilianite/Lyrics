@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             return $data;
                         }		
 
-                        if($_POST["password"] == "387606hcc"){
+                        if($_POST["password"] == "password"){
                             // Password is correct, so start a new session
                             session_start();
                             
