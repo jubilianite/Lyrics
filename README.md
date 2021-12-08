@@ -6,6 +6,8 @@ A sample ProPresenter Export file has been provided for preliminary testing and 
 
 XAMPP was used in the development of this project. To run this project, you may choose to use XAMPP or any other suitable applications or environment that supports HTML, CSS, JS and PHP together with a database.
 
+The default password for the admin at "adminLogin.php" page is "password". No connection to the database is needed for authentication.
+
 To download XAMPP, please visit http://www.apachefriends.org/en/xampp.html and select a suitable version for your Operating System.
 
 ## Donation
