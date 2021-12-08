@@ -8,13 +8,6 @@ $myfile = fopen("ProPresenter Export.txt", "r") or die("Unable to open file!");
 
 $songs_array = array();
 
-if(!isset($_SESSION["favorites"])) {
-	$_SESSION["favorites"] = array();
-}
-
-if(!isset($_GET["is_fav"])) {
-	$_GET["is_fav"] = "";
-}
 
 
 $count = -1;
@@ -31,7 +24,7 @@ while(!feof($myfile)) {
 		
 	} else {
 		$str .= $value;
-		$songs_array[$count]["text"] = "<pre>".$str."</pre>";
+		$songs_array[$count]["text"] = $str;
 
 	}
 
@@ -51,8 +44,7 @@ fclose($myfile);
 <!DOCTYPE html>
 <html>
 <head>
-
-	<meta charset="utf-8">
+<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -81,61 +73,39 @@ fclose($myfile);
         tr:nth-child(even){background-color: #f2f2f2}
     </style>
 
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 </head>
 <body>
 
-<button class="btn btn-success" onclick="javascript:window.location.href='search.php'">Search Page</button><br/><br/>
-
-<button class="btn btn-success" onclick="javascript:window.location.href='add_to_favorite.php'">Favorite Page</button><br/><br/>
 
 
-
-<?php
- if(isset($_GET["song_id"])) {
-
-	?> <table id="songs">
-	<tr>
-    <th>Song name</th>
-    <th>Lyrics</th>
-  	</tr>
-	<tr>
-	    <td><?php echo $songs_array[$_GET["song_id"]]["title"]; ?></td>
-	    <td><?php echo $songs_array[$_GET["song_id"]]["text"]; ?></td>
-	    
-	  </tr>
-	  </table><br/><br/><br/><?php
-			
-		}
-	?>
+<button class="btn btn-success" onclick="javascript:window.location.href='index.php'">Back to main page</button><br/><br/>
 
 
 <br/><br/><br/>
 
-<table class = "table songs_list">
-	<thead>
+<table id="songs" class="songs_list">
 	<tr>
-    <th>Song name (Click on the link to display lyrics)</th>
-    <th>Add to favorites (Click on the link to add song to favorite list)</th>
+    <th>Song name</th>
+    <th>Lyrics</th>
     
     
   </tr>
-  	</thead>
-
-  	<tbody id="table">
 
 	<?php
 		if(!empty($songs_array)) {
 			foreach ($songs_array as $key => $value) {
 				?><tr>
-				    <td><a href="index.php?song_id=<?php echo $key; ?>"><?php echo $value["title"]; ?></a></td>
+				    <td><?php echo $value["title"]; ?></td>
 
-				     <td><a href="add_to_favorite.php?song_id=<?php echo $key; ?>&is_fav=1">Add to favorites</a></td>
+				     <td><?php echo $value["text"]; ?></td>
 				    
 				  </tr><?php
 			}
 		}
 	?>
-	</tbody>
   
   
 </table>
@@ -144,6 +114,21 @@ fclose($myfile);
 
 	
 	
+<script type="text/javascript">
+
+	var information = <?php echo json_encode($songs_array) ?>;
+
+
+	$(document).ready(function () {
+	    $('.songs_list').dataTable({
+	        data: information,
+	        columns: [
+	            { data: 'title', title: 'Title' },
+	            { data: 'text', title: 'Lyrics' }
+	        ]
+	    });
+	});
+</script>  
   
 
 

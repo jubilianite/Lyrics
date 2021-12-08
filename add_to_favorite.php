@@ -84,11 +84,8 @@ fclose($myfile);
 </head>
 <body>
 
-<button class="btn btn-success" onclick="javascript:window.location.href='search.php'">Search Page</button><br/><br/>
 
-<button class="btn btn-success" onclick="javascript:window.location.href='add_to_favorite.php'">Favorite Page</button><br/><br/>
-
-
+<button class="btn btn-success" onclick="javascript:window.location.href='index.php'">Back to main page</button><br/><br/>
 
 <?php
  if(isset($_GET["song_id"])) {
@@ -111,39 +108,76 @@ fclose($myfile);
 
 <br/><br/><br/>
 
-<table class = "table songs_list">
-	<thead>
+<?php
+
+
+
+		if(isset($_GET["song_id"]) && $_GET["is_fav"] == "1") {
+
+			if(!isset($_SESSION["favorites"][$_GET["song_id"]])) {
+				$_SESSION["favorites"][$_GET["song_id"]]["title"] = $songs_array[$_GET["song_id"]]["title"];
+				$_SESSION["favorites"][$_GET["song_id"]]["text"] = $songs_array[$_GET["song_id"]]["text"];
+
+				echo "<script>alert('song added to favorite list');</script>";
+			}
+
+			
+
+			
+	
+			
+		} else if(isset($_GET["song_id"]) && $_GET["is_fav"] == "0") {
+
+			if(isset($_SESSION["favorites"][$_GET["song_id"]])) {
+				unset($_SESSION["favorites"][$_GET["song_id"]]);	
+				echo "<script>alert('song removed from favorite list');</script>";
+			}
+			
+
+			
+
+			
+			
+		} 
+	?>
+
+<?php
+if(!empty($_SESSION["favorites"])) {
+ ?><table id="songs">
 	<tr>
-    <th>Song name (Click on the link to display lyrics)</th>
-    <th>Add to favorites (Click on the link to add song to favorite list)</th>
+    <th>Favrorite Song name (Click on the link to display lyrics)</th>
+    <th>Remove from favorites (Click on the link to remove song from favorite list)</th>
     
     
   </tr>
-  	</thead>
-
-  	<tbody id="table">
 
 	<?php
-		if(!empty($songs_array)) {
-			foreach ($songs_array as $key => $value) {
+		if(!empty($_SESSION["favorites"])) {
+			foreach ($_SESSION["favorites"] as $key => $value) {
 				?><tr>
-				    <td><a href="index.php?song_id=<?php echo $key; ?>"><?php echo $value["title"]; ?></a></td>
+				    <td><a href="add_to_favorite.php?song_id=<?php echo $key; ?>"><?php echo $value["title"]; ?></a></td>
 
-				     <td><a href="add_to_favorite.php?song_id=<?php echo $key; ?>&is_fav=1">Add to favorites</a></td>
+				     <td><a href="add_to_favorite.php?song_id=<?php echo $key; ?>&is_fav=0">Remove from favorites</a></td>
 				    
 				  </tr><?php
 			}
 		}
+
+}
 	?>
-	</tbody>
   
   
 </table>
 
 <br/><br/><br/>
 
+
+
+<br/><br/><br/>
+
 	
 	
+
   
 
 
